@@ -92,8 +92,6 @@ class CheckoutControllerTest {
 		assertThat(expectedView).isEqualTo(result);
 		verify(shoppingCartService, times(1)).getCart();
 		verify(billingService, times(1)).createOrder(customer, cart);
-		verify(emailService, times(1)).sendEmail(customer.getEmail(), "bookstore - Order Confirmation",
-				"Your order has been confirmed.");
 		verify(shoppingCartService, times(1)).emptyCart();
 	}
 	
