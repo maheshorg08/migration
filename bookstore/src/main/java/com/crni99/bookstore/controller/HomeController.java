@@ -27,23 +27,23 @@ public class HomeController {
 	}
 
 	@GetMapping(value = { "", "/" })
-	public String listBooks(Model model, @RequestParam("page") Optional<Integer> page,
-			@RequestParam("size") Optional<Integer> size) {
+	public String listBooks(Model model, @RequestParam Optional<Integer> page,
+			@RequestParam Optional<Integer> size) {
 
 		return page(null, model, page, size);
 	}
 
 	@GetMapping("/search")
-	public String searchBooks(@RequestParam("term") String term, Model model,
-			@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+	public String searchBooks(@RequestParam String term, Model model,
+			@RequestParam Optional<Integer> page, @RequestParam Optional<Integer> size) {
 		if (term.isBlank()) {
 			return "redirect:/";
 		}
 		return page(term, model, page, size);
 	}
 
-	private String page(@RequestParam("term") String term, Model model, @RequestParam("page") Optional<Integer> page,
-			@RequestParam("size") Optional<Integer> size) {
+	private String page(@RequestParam String term, Model model, @RequestParam Optional<Integer> page,
+			@RequestParam Optional<Integer> size) {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(pageSizeDefault);
 
