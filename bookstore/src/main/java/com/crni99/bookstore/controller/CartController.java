@@ -32,7 +32,7 @@ public class CartController {
 	}
 
 	@GetMapping("/add/{id}")
-	public String addToCart(@PathVariable("id") Long id, RedirectAttributes redirect) {
+	public String addToCart(@PathVariable Long id, RedirectAttributes redirect) {
 		List<Book> cart = shoppingCartService.getCart();
 		Book book = bookService.findBookById(id).get();
 		if (book != null) {
@@ -44,7 +44,7 @@ public class CartController {
 	}
 
 	@GetMapping("/remove/{id}")
-	public String removeFromCart(@PathVariable("id") Long id, RedirectAttributes redirect) {
+	public String removeFromCart(@PathVariable Long id, RedirectAttributes redirect) {
 		Book book = bookService.findBookById(id).get();
 		if (book != null) {
 			shoppingCartService.deleteProductWithId(id);
