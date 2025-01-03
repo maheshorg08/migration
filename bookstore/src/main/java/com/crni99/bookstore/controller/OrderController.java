@@ -30,15 +30,15 @@ public class OrderController {
 	}
 
 	@GetMapping(value = { "", "/" })
-	public String getAllOrders(Model model, @RequestParam("page") Optional<Integer> page,
-			@RequestParam("size") Optional<Integer> size) {
+	public String getAllOrders(Model model, @RequestParam Optional<Integer> page,
+			@RequestParam Optional<Integer> size) {
 
 		return page(null, model, page, size);
 	}
 
 	@GetMapping("/search")
-	public String searchOrders(@RequestParam("term") String term, Model model,
-			@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+	public String searchOrders(@RequestParam String term, Model model,
+			@RequestParam Optional<Integer> page, @RequestParam Optional<Integer> size) {
 		if (term.isBlank()) {
 			return "redirect:/orders";
 		}
@@ -46,7 +46,7 @@ public class OrderController {
 	}
 
 	@GetMapping("/{id}")
-	public String showSpecificOrder(@PathVariable("id") Long id, Model model) {
+	public String showSpecificOrder(@PathVariable Long id, Model model) {
 		List<CustomerBooks> customerBooks = billingService.findOrdersByCustomerId(id);
 
 		Customer customer = null;
@@ -60,8 +60,8 @@ public class OrderController {
 		return "order";
 	}
 
-	private String page(@RequestParam("term") String term, Model model, @RequestParam("page") Optional<Integer> page,
-			@RequestParam("size") Optional<Integer> size) {
+	private String page(@RequestParam String term, Model model, @RequestParam Optional<Integer> page,
+			@RequestParam Optional<Integer> size) {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(10);
 
