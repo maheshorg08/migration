@@ -33,7 +33,7 @@ create table orders (
 CREATE TABLE USERS (
 	username VARCHAR(255) PRIMARY KEY NOT NULL,
 	password VARCHAR(255) NOT NULL,
-	enabled TINYINT(1) NOT NULL,
+	enabled TINYINT NOT NULL,
 	PRIMARY KEY (username)
 );
 
